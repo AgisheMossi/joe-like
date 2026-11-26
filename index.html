@@ -176,7 +176,7 @@ function toggle(){
 }
 btn.addEventListener("click",toggle);
 document.querySelectorAll("[data-play]").forEach(function(b){b.addEventListener("click",function(){location.hash="#accueil";setTimeout(toggle,50)})});
-var PHOTOS=[];for(var k=1;k<=24;k++)PHOTOS.push({src:"images/photo-"+(k<10?"0":"")+k+".jpg"});
+var PHOTOS=[];for(var k=1;k<=24;k++)PHOTOS.push({src:"photo-"+(k<10?"0":"")+k+".jpg"});
 document.querySelectorAll("[data-pt]").forEach(function(i){i.src=PHOTOS[1].src});
 document.querySelectorAll("[data-p0]").forEach(function(i){i.src=PHOTOS[0].src});
 var st=document.getElementById("stage"),sp=document.getElementById("spiral"),cnt=document.getElementById("spCount"),els=[];
@@ -203,3 +203,4 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!lb.hidden)
 </script>
 </body>
 </html>
+

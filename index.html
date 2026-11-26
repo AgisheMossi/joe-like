@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Joe Like</title>
+<meta name="theme-color" content="#0B1F4B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎵%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1F4B;--navy2:#07153A;--pink:#FF2E88;--bg:#fff;--surface:#EEF1F8;--text:#0B1F4B;--muted:#5B6787;--line:#D9DFEE;color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#07153A;--surface:#0F2A63;--text:#fff;--muted:#A9B5D6;--line:#1E3A7A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#07153A;--surface:#0F2A63;--text:#fff;--muted:#A9B5D6;--line:#1E3A7A;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font:400 16px/1.5 "DM Sans",system-ui,sans-serif;padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy);z-index:10}
+.app{max-width:480px;margin:0 auto}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.05}
+.view{display:none}.view.on{display:block}
+.hero{background:var(--navy);color:#fff;padding:36px 22px 32px;margin-top:calc(-1 * env(safe-area-inset-top,0px));padding-top:calc(36px + env(safe-area-inset-top,0px))}
+.hero small{color:#C5CFEA;font-size:15px}
+.hero h1{font-size:76px;font-weight:800;letter-spacing:-2px;margin:10px 0 6px}
+.hero h1 span{display:block;color:var(--pink)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--pink);color:#fff;border:0;border-radius:999px;padding:13px 22px;font:700 16px "DM Sans",sans-serif;text-decoration:none;cursor:pointer;min-height:48px}
+.btn.ghost{background:transparent;border:2px solid currentColor}
+.btn:focus-visible,.tab:focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 5px var(--pink)}
+.bars{display:inline-flex;gap:3px;align-items:flex-end;height:18px}
+.bars i{width:4px;height:6px;background:#fff;border-radius:2px}
+.playing .bars i{animation:eq .8s ease-in-out infinite alternate}
+.playing .bars i:nth-child(2){animation-delay:.2s}.playing .bars i:nth-child(3){animation-delay:.4s}
+@keyframes eq{to{height:18px}}
+@media (prefers-reduced-motion:reduce){.playing .bars i{animation:none;height:12px}}
+section{padding:26px 22px}
+h2{font-size:30px;font-weight:700;margin-bottom:14px}
+.card{background:var(--surface);border-radius:18px;padding:16px;display:flex;gap:14px;align-items:center;margin-bottom:12px}
+.cover{flex:none;width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--navy),#1B3C8C);display:grid;place-items:center;color:var(--pink);font:800 26px "Bricolage Grotesque",sans-serif}
+.cover.p{background:var(--pink);color:#fff}
+.card b{display:block;font-size:17px}.card span{color:var(--muted);font-size:14px}
+.card .grow{flex:1;min-width:0}
+.date{flex:none;width:58px;text-align:center;background:var(--navy);color:#fff;border-radius:14px;padding:8px 0}
+.date b{font:800 24px "Bricolage Grotesque",sans-serif;display:block;line-height:1}.date span{color:#C5CFEA;font-size:13px}
+.btn.sm{padding:9px 16px;font-size:14px;min-height:40px}
+.sold{color:var(--muted);font-weight:700;font-size:14px}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.links .btn{background:var(--navy);color:#fff}
+@media (prefers-color-scheme:dark){.links .btn{background:var(--surface)}}
+p.lead{font-size:18px;color:var(--text);margin-bottom:14px;max-width:60ch}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--navy);padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;z-index:20}
+nav .in{display:flex;width:100%;max-width:480px}
+.tab{flex:1;background:none;border:0;color:#9FB0DC;font:500 12px "DM Sans",sans-serif;padding:6px 0;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;border-radius:12px;min-height:48px;text-decoration:none}
+.tab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tab.on{color:#fff}.tab.on svg{stroke:var(--pink)}
+.ic{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.btn.ghost .ic{margin-right:0}
+.portrait{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;border-radius:24px;margin-bottom:-110px;-webkit-mask-image:linear-gradient(#000 50%,transparent 98%);mask-image:linear-gradient(#000 50%,transparent 98%)}
+.hero small,.hero h1,.hero p,.hero .btn{position:relative}
+.spiral{height:480vh;background:var(--navy);position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;color:#fff}
+.stage h2{position:absolute;left:22px;top:calc(24px + env(safe-area-inset-top,0px));z-index:200;font-size:26px}
+.ph{position:absolute;left:50%;top:54%;width:min(58vw,250px);aspect-ratio:3/4;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#1B3C8C,#07153A);border:3px solid #fff;box-shadow:0 14px 30px rgba(0,0,0,.35);will-change:transform,opacity}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph span{position:absolute;inset:0;display:grid;place-items:center;font:800 56px "Bricolage Grotesque",sans-serif;color:var(--pink)}
+.cnt{position:absolute;right:22px;bottom:24px;z-index:200;background:var(--pink);color:#fff;font-weight:700;border-radius:999px;padding:6px 14px;font-size:14px}
+.ph{cursor:pointer}.ph:focus-visible{outline:3px solid var(--pink)}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(7,21,58,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));color:#fff}
+.lb[hidden]{display:none}
+.lb img{max-width:100%;max-height:72vh;border-radius:16px;object-fit:contain}
+.lbbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}.lb .btn.ghost{color:#fff}
+.lbmsg{font-size:14px;color:#C5CFEA;text-align:center;min-height:21px}
+.hint{position:absolute;left:22px;bottom:28px;z-index:200;color:#C5CFEA;font-size:14px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-yt" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9.500v5l4.500-2.500z"/></symbol>
+<symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.500" cy="6.500" r=".6"/></symbol>
+<symbol id="i-sp" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M6.500 9.500c3.500-1 7.500-.7 11 1.200M7 12.800c3-.8 6-.5 8.700 1M7.500 16c2.500-.6 5-.3 7 .8"/></symbol>
+<symbol id="i-tt" viewBox="0 0 24 24"><path d="M14 3v11.500a3.500 3.500 0 1 1-3.500-3.500M14 3c.3 2.500 2 4.200 5 4.400"/></symbol>
+<symbol id="i-fb" viewBox="0 0 24 24"><path d="M17 3h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h2z"/></symbol>
+<symbol id="i-am" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M10.5 15.5v-7l4.500-1v7"/><circle cx="9" cy="15.5" r="1.5"/><circle cx="13.500" cy="14.500" r="1.5"/></symbol>
+</defs></svg>
+<div class="app">
+
+<main id="accueil" class="view on">
+  <div class="hero" id="heroPlayer">
+    <img class="portrait" data-p0 alt="Portrait de Joe Like">
+    <h1>Joe<span>Like</span></h1>
+    <p style="margin-bottom:22px;max-width:30ch">Rumba congolaise, Afrobeat, Afro-pop et R&B.</p>
+    <button class="btn" id="playBtn" aria-pressed="false"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span><span id="playLbl">Écouter « Marée haute »</span></button>
+  </div>
+  <div class="spiral" id="spiral"><div class="stage" id="stage"><h2>En images</h2><span class="hint">Fais défiler pour monter</span><span class="cnt" id="spCount">1 / 23</span></div></div>
+  <section>
+    <h2>Prochain concert</h2>
+    <div class="card">
+      <div class="date"><b>14</b><span>fév.</span></div>
+      <div class="grow"><b>Paris, La Maroquinerie</b><span>20h30 · Release party</span></div>
+    </div>
+    <a class="btn" href="#concerts">Voir toutes les dates</a>
+  </section>
+  <section style="padding-top:4px">
+    <h2>Sorties récentes</h2>
+    <div class="card"><div class="cover p">♪</div><div class="grow"><b>Marée haute</b><span>Single · 2026</span></div></div>
+    <div class="card"><div class="cover">N</div><div class="grow"><b>Néons</b><span>EP · 2025</span></div></div>
+  </section>
+</main>
+
+<main id="musique" class="view">
+  <section>
+    <h2>Musique</h2>
+    <div class="card"><div class="cover p">♪</div><div class="grow"><b>Marée haute</b><span>Single · 2026</span></div><button class="btn sm" data-play>Écouter</button></div>
+    <div class="card"><div class="cover">N</div><div class="grow"><b>Néons</b><span>EP · 5 titres · 2025</span></div><button class="btn sm" data-play>Écouter</button></div>
+    <div class="card"><div class="cover">L</div><div class="grow"><b>Lumière du soir</b><span>Album · 12 titres · 2024</span></div><button class="btn sm" data-play>Écouter</button></div>
+    <h2 style="margin-top:26px">Écouter partout</h2>
+    <div class="links">
+      <a class="btn sm" href="https://open.spotify.com/artist/79iYQmZKVGRrPZSELgHJrq" target="_blank" rel="noopener"><svg class="ic"><use href="#i-sp"/></svg>Spotify</a><a class="btn sm" href="https://www.youtube.com/@JOELIKEofficial" target="_blank" rel="noopener"><svg class="ic"><use href="#i-yt"/></svg>YouTube</a><a class="btn sm" href="https://music.apple.com/fr/artist/joe-like/1748121013" target="_blank" rel="noopener"><svg class="ic"><use href="#i-am"/></svg>Apple Music</a>
+    </div>
+  </section>
+</main>
+
+<main id="concerts" class="view">
+  <section>
+    <h2>Concerts</h2>
+    <div class="card"><div class="date"><b>14</b><span>fév.</span></div><div class="grow"><b>Paris</b><span>La Maroquinerie</span></div><a class="btn sm" href="#concerts">Billets</a></div>
+    <div class="card"><div class="date"><b>28</b><span>fév.</span></div><div class="grow"><b>Lyon</b><span>Le Transbordeur</span></div><a class="btn sm" href="#concerts">Billets</a></div>
+    <div class="card"><div class="date"><b>12</b><span>mars</span></div><div class="grow"><b>Bordeaux</b><span>Le Rocher de Palmer</span></div><span class="sold">Complet</span></div>
+    <div class="card"><div class="date"><b>03</b><span>avr.</span></div><div class="grow"><b>Lille</b><span>L’Aéronef</span></div><a class="btn sm" href="#concerts">Billets</a></div>
+    <p style="color:var(--muted);font-size:14px;margin-top:6px">Dates fictives, à remplacer par les vraies.</p>
+  </section>
+</main>
+
+<main id="bio" class="view">
+  <div class="hero" style="padding-bottom:26px"><img class="portrait" data-pt alt="Portrait de Joe Like" style="aspect-ratio:1/1;margin-bottom:-70px"><h1 style="font-size:56px">Joe<span style="display:inline;margin-left:10px">Like</span></h1></div>
+  <section>
+    <h2>À propos</h2>
+    <p class="lead">Né un 24 mars à Goma, en République démocratique du Congo, Jonathan Lukambo, alias Joe Like, est un artiste aux multiples facettes. Bercé par les rythmes envoûtants de l’Afrique et les mélodies soul de l’Amérique, il développe très jeune une passion dévorante pour la musique.</p>
+    <p class="lead">Issu d’une famille profondément religieuse et mélomane, Joe baigne dans la musique dès l’enfance. Son père, pasteur, lui transmet sa passion de la guitare et lui apprend les accords et les techniques de jeu. Sa mère, choriste et diaconesse, lui insuffle le sens du rythme et de l’harmonie en l’emmenant chanter dans la chorale de l’église.</p>
+    <p class="lead">Ces influences ont façonné son identité artistique et son style unique, qui marie les sonorités traditionnelles de la rumba congolaise aux rythmes modernes de l’Afrobeat, de l’Afro-pop et du R&amp;B.</p>
+    <h2 style="margin-top:24px">Suivre Joe</h2>
+    <div class="links">
+      <a class="btn sm" href="https://www.instagram.com/joelike_l" target="_blank" rel="noopener"><svg class="ic"><use href="#i-ig"/></svg>Instagram</a><a class="btn sm" href="https://share.google/oSrqOnNOQMqwa9AxG" target="_blank" rel="noopener"><svg class="ic"><use href="#i-tt"/></svg>TikTok</a><a class="btn sm" href="https://www.youtube.com/@JOELIKEofficial" target="_blank" rel="noopener"><svg class="ic"><use href="#i-yt"/></svg>YouTube</a><a class="btn sm" href="https://open.spotify.com/artist/79iYQmZKVGRrPZSELgHJrq" target="_blank" rel="noopener"><svg class="ic"><use href="#i-sp"/></svg>Spotify</a><a class="btn sm" href="https://music.apple.com/fr/artist/joe-like/1748121013" target="_blank" rel="noopener"><svg class="ic"><use href="#i-am"/></svg>Apple Music</a><a class="btn sm" href="https://www.facebook.com/share/1CabcaV1CG/" target="_blank" rel="noopener"><svg class="ic"><use href="#i-fb"/></svg>Facebook</a>
+    </div>
+    <h2 style="margin-top:24px">Label</h2>
+    <a class="btn ghost" href="https://www.instagram.com/lurhex_production" target="_blank" rel="noopener" style="color:var(--text)"><svg class="ic"><use href="#i-ig"/></svg>Lurhex Production</a>
+  </section>
+</main>
+
+</div>
+
+<div id="lb" class="lb" hidden role="dialog" aria-modal="true" aria-label="Photo en grand"><img id="lbImg" alt="Joe Like"><div class="lbbar"><a class="btn" id="lbDl" download>Télécharger</a><button class="btn ghost" id="lbClose">Fermer</button></div><p class="lbmsg" id="lbMsg" role="status"></p></div>
+<nav aria-label="Navigation principale"><div class="in">
+  <a class="tab on" href="#accueil" data-v="accueil"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10H3z"/></svg>Accueil</a>
+  <a class="tab" href="#musique" data-v="musique"><svg viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>Musique</a>
+  <a class="tab" href="#concerts" data-v="concerts"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Concerts</a>
+  <a class="tab" href="#bio" data-v="bio"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>À propos</a>
+</div></nav>
+
+<script>
+var views=["accueil","musique","concerts","bio"];
+function show(){
+  var h=(location.hash||"#accueil").slice(1);
+  if(views.indexOf(h)<0)h="accueil";
+  views.forEach(function(v){document.getElementById(v).classList.toggle("on",v===h)});
+  document.querySelectorAll(".tab").forEach(function(t){t.classList.toggle("on",t.dataset.v===h);t.setAttribute("aria-current",t.dataset.v===h?"page":"false")});
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",show);show();
+var hero=document.getElementById("heroPlayer"),btn=document.getElementById("playBtn"),lbl=document.getElementById("playLbl");
+function toggle(){
+  var on=!hero.classList.contains("playing");
+  hero.classList.toggle("playing",on);
+  btn.setAttribute("aria-pressed",on);
+  lbl.textContent=on?"Pause":"Écouter « Marée haute »";
+}
+btn.addEventListener("click",toggle);
+document.querySelectorAll("[data-play]").forEach(function(b){b.addEventListener("click",function(){location.hash="#accueil";setTimeout(toggle,50)})});
+var PHOTOS=[];for(var k=1;k<=24;k++)PHOTOS.push({src:"images/photo-"+(k<10?"0":"")+k+".jpg"});
+document.querySelectorAll("[data-pt]").forEach(function(i){i.src=PHOTOS[1].src});
+document.querySelectorAll("[data-p0]").forEach(function(i){i.src=PHOTOS[0].src});
+var st=document.getElementById("stage"),sp=document.getElementById("spiral"),cnt=document.getElementById("spCount"),els=[];
+PHOTOS.forEach(function(p,i){var d=document.createElement("div");d.className="ph";d.tabIndex=0;d.setAttribute("role","button");d.setAttribute("aria-label","Ouvrir la photo "+(i+1));(function(n){d.addEventListener("click",function(){openLb(n)});d.addEventListener("keydown",function(e){if(e.key==="Enter")openLb(n)})})(i);d.innerHTML=p.src?'<img src="'+p.src+'" alt="Joe Like, photo '+(i+1)+'">':'<span>JL</span>';st.appendChild(d);els.push(d)});
+function spin(){
+  var r=sp.getBoundingClientRect();if(!r.height)return;
+  var vh=window.innerHeight,p=Math.min(1,Math.max(0,-r.top/(r.height-vh))),n=els.length,W=st.clientWidth,H=st.clientHeight,u0=p*(n-1),R=W*.3,sy=H*.15;
+  els.forEach(function(e,i){
+    var u=i-u0,th=u*.85,d=Math.cos(th),a=Math.abs(u),k=(d+1)/2;
+    e.style.transform="translate(-50%,-50%) translate("+(Math.sin(th)*R)+"px,"+(-u*sy)+"px) scale("+(.6+.4*k)+") rotate("+(Math.sin(th)*4)+"deg)";
+    e.style.opacity=Math.max(0,1-a/3.2)*(.45+.55*k);
+    e.style.zIndex=Math.round((d+1)*50);
+    e.style.visibility=a>3.2?"hidden":"visible";
+  });
+  cnt.textContent=(Math.round(u0)+1)+" / "+n;
+}
+window.addEventListener("scroll",spin,{passive:true});window.addEventListener("resize",spin);window.addEventListener("hashchange",spin);sp.style.height=(els.length*55+100)+"vh";spin();
+var lb=document.getElementById("lb"),lbImg=document.getElementById("lbImg"),lbDl=document.getElementById("lbDl"),lbMsg=document.getElementById("lbMsg"),cur=0;
+function openLb(i){cur=i;lbImg.src=PHOTOS[i].src;lbDl.href=PHOTOS[i].src;lbDl.setAttribute("download","joe-like-"+(i+1)+".jpg");lbMsg.textContent="";lb.hidden=false;document.body.style.overflow="hidden";document.getElementById("lbClose").focus()}
+function closeLb(){lb.hidden=true;document.body.style.overflow=""}
+document.getElementById("lbClose").addEventListener("click",closeLb);
+lb.addEventListener("click",function(e){if(e.target===lb)closeLb()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!lb.hidden)closeLb()});
+</script>
+</body>
+</html>
